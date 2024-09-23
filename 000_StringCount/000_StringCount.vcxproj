@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{1530a13d-2f69-492b-9230-142b02d472d0}</ProjectGuid>
-    <RootNamespace>AssortRockProject</RootNamespace>
+    <ProjectGuid>{ff6d70c7-832e-425c-afb6-1e0c39c7a5a7}</ProjectGuid>
+    <RootNamespace>My000StringCount</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AssortRockProject.cpp" />
+    <ClCompile Include="000_StringCount.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
