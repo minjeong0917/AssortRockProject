@@ -24,14 +24,13 @@ int NumberCount(int _Value)
 }
 
 
+
 int main()
 {
     int Result0 = NumberCount(12358);
     int Result1 = NumberCount(5258);
     int Result2 = NumberCount(5258111);
     int Result3 = NumberCount(2147483647);
-    int Result4 = NumberCount(0);
-    int Result5 = NumberCount(-2);
     int Result6 = NumberCount(556);
     int Result7 = NumberCount(552226);
 
