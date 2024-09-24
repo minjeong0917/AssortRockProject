@@ -7,13 +7,17 @@
 const int LINECOUNT = 50;
 const int NAMELEN = 10;
 
-int PlayerAtt = 10;
-int PlayerHp = 100;
+int PlayerAttMin = 0;
+int PlayerAtt = 0;
+int PlayerHp = 0;
+int PlayerSpeed = 10;
 char PlayerName[NAMELEN] = "NONE";
 
 int MonsterAtt = 10;
-int MonsterHp = 50;
+int MonsterHp = 100;
+int MonsterSpeed = 10;
 char MonsterName[NAMELEN] = "NONE";
+
 
 void StrCopy(char* _Arr, int _BufferSize, const char* const _Name)
 {
@@ -31,18 +35,20 @@ void StrCopy(char* _Arr, int _BufferSize, const char* const _Name)
         _Arr[i] = _Name[i];
     }
 }
-void CreatePlayer(const char* const _Ptr, int _Att, int _Hp)
+void CreatePlayer(const char* const _Ptr, int _Att, int _Hp, int _Speed)
 {
     StrCopy(PlayerName, NAMELEN, _Ptr);
     PlayerAtt = _Att;
     PlayerHp = _Hp;
+    PlayerSpeed = _Speed;
 }
 
-void CreateMonster(const char* const _Ptr, int _Att, int _Hp)
+void CreateMonster(const char* const _Ptr, int _Att, int _Hp, int _Speed)
 {
     StrCopy(MonsterName, NAMELEN, _Ptr);
     MonsterAtt = _Att;
     MonsterHp = _Hp;
+    MonsterSpeed = _Speed;
 }
 
 void Line(int _size)
@@ -73,6 +79,12 @@ void StatusRender(const char* _Name, int _Att, int _HP)
 }
 
 
+int CalSpeed(int _Speed)
+{
+    return rand() % _Speed;
+}
+
+
 void Damage(int& _DefHp, int _Att)
 {
     _DefHp -= _Att;
@@ -88,8 +100,12 @@ void PlayerStatusRender()
 void MonsterStatusRender()
 {
     StatusRender(MonsterName, MonsterAtt, MonsterHp);
+}
 
 
+void SpeedCheckRender(const char* const _Name)
+{
+    printf_s("%s 의 선공입니다\n", _Name);
 }
 
 void DamageRender(const char* const _AttName, const char* const _DefName, int& _DefHp, int _Att)
@@ -100,8 +116,10 @@ void DamageRender(const char* const _AttName, const char* const _DefName, int& _
 
 int main()
 {
-    CreatePlayer("Playertest", 10, 100);
-    CreateMonster("Orc", 10, 50);
+    CreatePlayer("Player", 10, 100, 20);
+    CreateMonster("Orc", 10, 100, 10);
+
+    srand(time(0));
 
     while (true)
     {
@@ -113,22 +131,65 @@ int main()
         MonsterStatusRender();
 
         Input = _getch();
-        Damage(MonsterHp, PlayerAtt);
-
         system("cls");
+
+        int CurPlayerSpeed = CalSpeed(PlayerSpeed);
+        int CurMonsterSpeed = CalSpeed(MonsterSpeed);
+
+        if (CurPlayerSpeed > CurMonsterSpeed)
+        {
+            Damage(MonsterHp, PlayerAtt);
+
+        }
+        else {
+            Damage(PlayerHp, MonsterAtt);
+;
+        }
+
         PlayerStatusRender();
         MonsterStatusRender();
-        DamageRender(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+
+        if (CurPlayerSpeed > CurMonsterSpeed)
+        {
+
+            SpeedCheckRender(PlayerName);
+            DamageRender(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+        }
+        else {
+
+            SpeedCheckRender(MonsterName);
+            DamageRender(MonsterName, PlayerName, MonsterHp, MonsterAtt);
+        }
 
 
         Input = _getch();
-        Damage(PlayerHp, MonsterAtt);
-
         system("cls");
+        if (CurPlayerSpeed > CurMonsterSpeed)
+        {
+            Damage(PlayerHp, MonsterAtt);
+        }
+        else {
+            Damage(MonsterHp, PlayerAtt);
+            
+        }
+
         PlayerStatusRender();
         MonsterStatusRender();
-        DamageRender(PlayerName, MonsterName, MonsterHp, PlayerAtt);
-        DamageRender(MonsterName, PlayerName, PlayerHp, MonsterAtt);
+
+        if (CurPlayerSpeed > CurMonsterSpeed)
+        {
+
+            SpeedCheckRender(PlayerName);
+            DamageRender(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+            DamageRender(MonsterName, PlayerName, MonsterHp, MonsterAtt);
+        }
+        else {
+
+            SpeedCheckRender(MonsterName);
+            DamageRender(MonsterName, PlayerName, MonsterHp, MonsterAtt);
+            DamageRender(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+        }
+
 
         Input = _getch();
     }
