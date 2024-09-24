@@ -2,16 +2,17 @@
 //
 
 #include <iostream>
+#include <conio.h>
 
 const int LINECOUNT = 50;
 const int NAMELEN = 10;
 
-int PlayerAtt = 0;
-int PlayerHp = 0;
+int PlayerAtt = 10;
+int PlayerHp = 100;
 char PlayerName[NAMELEN] = "NONE";
 
 int MonsterAtt = 10;
-int MonsterHp = 100;
+int MonsterHp = 50;
 char MonsterName[NAMELEN] = "NONE";
 
 void StrCopy(char* _Arr, int _BufferSize, const char* const _Name)
@@ -58,7 +59,7 @@ void Line(int _size)
 void StatusRender(const char* _Name, int _Att, int _HP)
 {
 
-    printf_s("%s Status ", _Name);
+    printf_s("%s Status ", _Name);  
 
     int NameSize = strlen(_Name) + strlen(" Status ");
 
@@ -71,21 +72,65 @@ void StatusRender(const char* _Name, int _Att, int _HP)
 
 }
 
+
+void Damage(int& _DefHp, int _Att)
+{
+    _DefHp -= _Att;
+}
+
+
 void PlayerStatusRender()
 {
     StatusRender(PlayerName, PlayerAtt, PlayerHp);
+
 }
 
 void MonsterStatusRender()
 {
     StatusRender(MonsterName, MonsterAtt, MonsterHp);
+
+
 }
+
+void DamageRender(const char* const _AttName, const char* const _DefName, int& _DefHp, int _Att)
+{
+    printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혔습니다.\n", _AttName, _DefName, _Att);
+
+}
+
 int main()
 {
     CreatePlayer("Playertest", 10, 100);
     CreateMonster("Orc", 10, 50);
 
-    PlayerStatusRender();
-    MonsterStatusRender();
+    while (true)
+    {
+        system("cls");
+
+        char Input = ' ';
+
+        PlayerStatusRender();
+        MonsterStatusRender();
+
+        Input = _getch();
+        Damage(MonsterHp, PlayerAtt);
+
+        system("cls");
+        PlayerStatusRender();
+        MonsterStatusRender();
+        DamageRender(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+
+
+        Input = _getch();
+        Damage(PlayerHp, MonsterAtt);
+
+        system("cls");
+        PlayerStatusRender();
+        MonsterStatusRender();
+        DamageRender(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+        DamageRender(MonsterName, PlayerName, PlayerHp, MonsterAtt);
+
+        Input = _getch();
+    }
 
 }
