@@ -23,8 +23,6 @@ int NumberCount(int _Value)
     return Result;
 }
 
-
-
 int main()
 {
     int Result0 = NumberCount(12358);
