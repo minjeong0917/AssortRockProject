@@ -37,11 +37,11 @@ public:
         Hp -= _AttUnit.GetDamage();
     }
 
-    void DamageRender(const FightUnit& _DefUnit)
-    {
-        printf_s(" %d의 데미지를 받아 Hp가 %d가 되었습니다.\n",  GetDamage(), _DefUnit.Hp);
+    //void DamageRender(const FightUnit& _DefUnit)
+    //{
+    //    printf_s(" %d의 데미지를 받아 Hp가 %d가 되었습니다.\n",  GetDamage(), _DefUnit.Hp); 이렇게 하면 안됨!!! 랜덤이 같은 값으로 들어간다는 보장 X..! 선생님 코드 참고!
 
-    }
+    //}
 
     const char* GetName() const
     {
@@ -73,7 +73,7 @@ int main()
         Input = _getch();
 
         NewMonster.DamageLogic(NewPlayer);
-        NewMonster.DamageRender(NewMonster);
+        //NewMonster.DamageRender(NewMonster);
 
     }
 
