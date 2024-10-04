@@ -16,7 +16,7 @@ void UWorld::InPlayer(class UPlayer& _Player)
 		std::cout << "이름을 적어주세요" << std::endl;
 		std::cin >> InputName;
 
-		while (anoterKey) {
+		while (anoterKey) { // if문으로 해결하는게 더 좋을듯? 
 			printf_s("당신의 이름은 %s입니다. 결정하시겠습니까?\n", InputName);
 			printf_s("a. 결정\n");
 			printf_s("b. 재입력\n");
