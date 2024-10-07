@@ -72,8 +72,6 @@ public:
 		return CurZoneIndex;
 	}
 
-	void SaveFileLoad();
-
 protected:
 
 private:

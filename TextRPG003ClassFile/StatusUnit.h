@@ -7,10 +7,8 @@ class UStatusUnit : public UObject
 public:
 	void TopLine();
 	void BotLine();
+
 	void StatusRender();
-
-
-
 
 	void SetHp(int _Value)
 	{
@@ -62,7 +60,7 @@ protected:
 	int Speed = 10;
 	int Gold = 0;
 
-	virtual void StatusTextPrint(); //protected에 두는게 좋은듯!!
+	virtual void StatusTextPrint() {}
 
 private:
 };
