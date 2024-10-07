@@ -29,9 +29,21 @@ bool UZone::InterConnecting(UZone* _LinkZone)
 	// 무식하게 짜세요.
 	// 디버깅
 
+	// 내가 생각했던 방식...
+	//for (size_t i = 0; i < LINKZONEMAX; i++)
+	//{
+	//	if (nullptr == LinkZone[i])
+	//	{
+	//		LinkZone[i] = _LinkZone;
+	//		_LinkZone[i] = *this;
+	//		return true;
+	//	}
+	//}
 
+	// 이게 정답..
 	_LinkZone->Connecting(this);
 	this->Connecting(_LinkZone);
+
 
 	_LinkZone;
 	this;
