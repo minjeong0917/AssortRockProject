@@ -3,7 +3,7 @@
 #include <BaseSystem/EngineDebug.h>
 #include <conio.h>
 
-int BlackSmith::Enforce(class UPlayer& _Player)
+void BlackSmith::Enforce(class UPlayer& _Player)
 {
 
 	srand(time(nullptr));
@@ -11,12 +11,22 @@ int BlackSmith::Enforce(class UPlayer& _Player)
 
 	int CurGold = _Player.GetGold();
 
+	if (EnforceStep == 15)
+	{
+		printf_s("최고 강화 단계입니다.");
+		_getch();
+
+		return;
+	}
+
 	CurGold -= (EnforceStep+1) * 100;
 	_Player.SetGold(CurGold);
 
 	system("cls");
 
 	_Player.StatusRender();
+
+
 
 	if (EnforceStep >= 0 && EnforceStep <= 5)
 	{
@@ -50,8 +60,6 @@ int BlackSmith::Enforce(class UPlayer& _Player)
 
 		}
 	}
-
-	return EnforceStep;
 }
 
 void BlackSmith::InPlayer(class UPlayer& _Player/*, int& Result*/)
@@ -74,10 +82,7 @@ void BlackSmith::InPlayer(class UPlayer& _Player/*, int& Result*/)
 		std::cout << "2. 나간다\n";
 		int Select = _getch();
 
-		if (EnforceStep == 15)
-		{
-			printf_s("최고 강화 단계입니다.");
-		}
+
 
 		switch (Select)
 		{

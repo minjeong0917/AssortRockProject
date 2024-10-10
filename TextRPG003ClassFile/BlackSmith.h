@@ -10,7 +10,7 @@ public:
 	//{
 
 	//}
-	int Enforce(class UPlayer& _Player);
+	void Enforce(class UPlayer& _Player);
 
 	void InPlayer(class UPlayer& _Player/*, int& Result*/);
 
