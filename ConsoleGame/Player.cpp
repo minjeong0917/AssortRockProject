@@ -12,6 +12,12 @@ void Player::Tick()
 {
 	int Value = _kbhit();
 
+	ConsoleEngine::GetWindow();
+	int MaxX = ConsoleEngine::GetWindowSize().X;
+	int MaxY = ConsoleEngine::GetWindowSize().Y;
+
+	bool BreakMove = true;
+
 	Enums::GAMEDIR Dir = Enums::GAMEDIR::NONE;
 
 	if (Value != 0)
@@ -22,18 +28,38 @@ void Player::Tick()
 		{
 		case 'A':
 		case 'a':
+			if (Pos.X - 1 < 0)
+			{
+				BreakMove = false;
+				break;
+			}
 			Dir = Enums::GAMEDIR::LEFT;
 			break;
 		case 'D':
 		case 'd':
+			if (Pos.X + 2 > MaxX)
+			{
+				BreakMove = false;
+				break;
+			}
 			Dir = Enums::GAMEDIR::RIGHT;
 			break;
 		case 'W':
 		case 'w':
+			if (Pos.Y - 1 < 0)
+			{
+				BreakMove = false;
+				break;
+			}
 			Dir = Enums::GAMEDIR::UP;
 			break;
 		case 'S':
 		case 's':
+			if (Pos.Y + 1 == MaxY)
+ 			{
+				BreakMove = false;
+				break;
+			}
 			Dir = Enums::GAMEDIR::DOWN;
 			break;
 		default:
@@ -42,37 +68,31 @@ void Player::Tick()
 
 	}
 
-	switch (Dir)
-	{
-	case Enums::GAMEDIR::LEFT:
-		Pos += FIntPoint::LEFT;
-		break;
-	case Enums::GAMEDIR::RIGHT:
-		Pos += FIntPoint::RIGHT;
-		break;
-	case Enums::GAMEDIR::UP:
-		Pos += FIntPoint::UP;
-		break;
-	case Enums::GAMEDIR::DOWN:
-		Pos += FIntPoint::DOWN;
-		break;
-	default:
-		break;
+	if (BreakMove) {
+		switch (Dir)
+		{
+		case Enums::GAMEDIR::LEFT:
+			Pos += FIntPoint::LEFT;
+			break;
+		case Enums::GAMEDIR::RIGHT:
+			Pos += FIntPoint::RIGHT;
+			break;
+		case Enums::GAMEDIR::UP:
+			Pos += FIntPoint::UP;
+			break;
+		case Enums::GAMEDIR::DOWN:
+			Pos += FIntPoint::DOWN;
+			break;
+		default:
+			break;
+		}
+
 	}
+
+
 
 }
 
-void Player::PlayerLimits(FIntPoint _Pos)
-{
-	ConsoleEngine::GetWindow();
-	int MaxX = ConsoleEngine::GetWindowSize().X;
-
-	if (_Pos.X > MaxX)
-	{
-		_Pos.X = MaxX;
-	}
-	
-}
 
 void Player::Render(ConsoleImage* _BackBuffer)
 {

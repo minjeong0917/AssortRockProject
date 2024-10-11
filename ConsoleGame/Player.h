@@ -21,7 +21,6 @@ public:
 	void Render(ConsoleImage* _BackBuffer);
 
 	void SetActorLocation(FIntPoint _Pos);
-	void PlayerLimits(FIntPoint _Pos);
 
 private:
 	FIntPoint Pos;
