@@ -23,6 +23,9 @@ public:
 	void SetActorLocation(FIntPoint _Pos);
 
 private:
+	int PlayerSizeX = 0;
+	int PlayerSizeY = 0;
+
 	FIntPoint Pos;
 	ConsoleImage PlayerImage;
 };

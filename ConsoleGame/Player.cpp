@@ -5,7 +5,10 @@
 
 void Player::BeginPlay()
 {
-	PlayerImage.Create({1, 1}, '@');
+	PlayerSizeX = 3;
+	PlayerSizeY = 9;
+
+	PlayerImage.Create({ PlayerSizeX, PlayerSizeY }, '@');
 }
 
 void Player::Tick()
@@ -37,7 +40,7 @@ void Player::Tick()
 			break;
 		case 'D':
 		case 'd':
-			if (Pos.X + 2 > MaxX)
+			if (Pos.X + PlayerSizeX + 1 > MaxX)
 			{
 				BreakMove = false;
 				break;
@@ -55,7 +58,7 @@ void Player::Tick()
 			break;
 		case 'S':
 		case 's':
-			if (Pos.Y + 1 == MaxY)
+			if (Pos.Y + PlayerSizeY == MaxY)
  			{
 				BreakMove = false;
 				break;
@@ -86,11 +89,7 @@ void Player::Tick()
 		default:
 			break;
 		}
-
 	}
-
-
-
 }
 
 
