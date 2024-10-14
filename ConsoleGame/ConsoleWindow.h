@@ -31,7 +31,6 @@ public:
 
 	void SetScreenSize(int _X, int _Y);
 
-
 	void WindowSetPixel(FIntPoint _Value, char _Text = '*')
 	{
 		WindowSetPixel(_Value.X, _Value.Y, _Text);
@@ -51,13 +50,11 @@ public:
 		return BackBuffer;
 	}
 
-
-
 private:
-	ConsoleImage BackBuffer;
 	int FrameDelay = 250;
 
 	// 최종적으로 우리 눈에 보일 이미지.
 	// 여기에다가 그리지 않으면 눈에 보이지 않아요.
+	ConsoleImage BackBuffer;
 };
 

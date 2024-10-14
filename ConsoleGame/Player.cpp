@@ -1,28 +1,39 @@
 #include "Player.h"
 #include <conio.h>
 #include "Enums.h"
+#include "GlobalValue.h"
 #include "ConsoleEngine.h"
 
 void Player::BeginPlay()
 {
-	PlayerSizeX = 3;
-	PlayerSizeY = 9;
+	Super::BeginPlay();
 
-	PlayerImage.Create({ PlayerSizeX, PlayerSizeY }, '@');
+	RenderImage.Create({1, 1}, '@');
+	SetActorLocation({ 10,8 });
 }
 
 void Player::Tick()
 {
-	int Value = _kbhit();
+	Super::Tick();
+	// ConsoleEngine::MainPlayer
 
+	// 타고가서 쓰게 할려는 방법.
+	// ConsoleEngine::GetEngine().GetPlayer()
+
+	// ConsoleImage& BackBuffer = *_BackBuffer;
+
+	// static은 전역이니까 객체가 필요없다.
 	ConsoleEngine::GetWindow();
-	int MaxX = ConsoleEngine::GetWindowSize().X;
-	int MaxY = ConsoleEngine::GetWindowSize().Y;
+	ConsoleEngine::GetWindowSize();
 
-	bool BreakMove = true;
+	// 남에 코드 안건드리고 
+	GlobalValue::WindowPtr;
+	GlobalValue::WindowSize;
 
+	
+
+	int Value = _kbhit();
 	Enums::GAMEDIR Dir = Enums::GAMEDIR::NONE;
-
 	if (Value != 0)
 	{
 		int Select = _getch();
@@ -31,74 +42,56 @@ void Player::Tick()
 		{
 		case 'A':
 		case 'a':
-			if (Pos.X - 1 < 0)
-			{
-				BreakMove = false;
-				break;
-			}
 			Dir = Enums::GAMEDIR::LEFT;
 			break;
 		case 'D':
 		case 'd':
-			if (Pos.X + PlayerSizeX + 1 > MaxX)
-			{
-				BreakMove = false;
-				break;
-			}
 			Dir = Enums::GAMEDIR::RIGHT;
 			break;
 		case 'W':
 		case 'w':
-			if (Pos.Y - 1 < 0)
-			{
-				BreakMove = false;
-				break;
-			}
 			Dir = Enums::GAMEDIR::UP;
 			break;
 		case 'S':
 		case 's':
-			if (Pos.Y + PlayerSizeY == MaxY)
- 			{
-				BreakMove = false;
-				break;
-			}
 			Dir = Enums::GAMEDIR::DOWN;
 			break;
-		default:
-			break;
-		}
-
-	}
-
-	if (BreakMove) {
-		switch (Dir)
+		case 'Z':
+		case 'z':
 		{
-		case Enums::GAMEDIR::LEFT:
-			Pos += FIntPoint::LEFT;
+			Bullet* NewBullet = ConsoleEngine::GetEngine().SpawnActor<Bullet>();
+
+			// 1. 총알이 플레이어 위치에 나오게 만드세요
+			// 2. 총알이 위쪽으로 올라가게 만드세요.
+			NewBullet->SetActorLocation(GetPos());
+
 			break;
-		case Enums::GAMEDIR::RIGHT:
-			Pos += FIntPoint::RIGHT;
-			break;
-		case Enums::GAMEDIR::UP:
-			Pos += FIntPoint::UP;
-			break;
-		case Enums::GAMEDIR::DOWN:
-			Pos += FIntPoint::DOWN;
-			break;
+		}
 		default:
 			break;
 		}
+
 	}
+
+	switch (Dir)
+	{
+	case Enums::GAMEDIR::LEFT:
+		AddActorLocation(FIntPoint::LEFT);
+		break;
+	case Enums::GAMEDIR::RIGHT:
+		AddActorLocation(FIntPoint::RIGHT);
+		break;
+	case Enums::GAMEDIR::UP:
+		AddActorLocation(FIntPoint::UP);
+		break;
+	case Enums::GAMEDIR::DOWN:
+		AddActorLocation(FIntPoint::DOWN);
+		break;
+	default:
+		break;
+	}
+
+	// Pos += FIntPoint::RIGHT;
 }
 
 
-void Player::Render(ConsoleImage* _BackBuffer)
-{
-	_BackBuffer->Copy(Pos, PlayerImage);
-}
-
-void Player::SetActorLocation(FIntPoint _Pos)
-{
-	Pos = _Pos;
-}

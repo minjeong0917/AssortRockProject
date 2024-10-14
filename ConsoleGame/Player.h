@@ -1,5 +1,6 @@
 #pragma once
 #include "ConsoleImage.h"
+#include "Actor.h"
 
 //class AActor
 //{
@@ -13,20 +14,14 @@
 
 // 화면어딘가에 이녀석이 랜더링
 // 일반적인 게임엔진
-class Player
+class Player : public AActor
 {
 public:
-	void BeginPlay();
-	void Tick();
-	void Render(ConsoleImage* _BackBuffer);
+	void BeginPlay() override;
+	void Tick() override;
 
-	void SetActorLocation(FIntPoint _Pos);
 
 private:
-	int PlayerSizeX = 0;
-	int PlayerSizeY = 0;
 
-	FIntPoint Pos;
-	ConsoleImage PlayerImage;
 };
 

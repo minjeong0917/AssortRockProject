@@ -52,7 +52,6 @@ void ConsoleImage::SetPixel(FIntPoint _Pos, char _Char)
 	// 화면 바깥에 그려지는것 막은것
 	if (0 > _Pos.X || X < _Pos.X)
 	{
-		X = _Pos.X;
 		return;
 	}
 
