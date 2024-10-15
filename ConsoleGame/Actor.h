@@ -17,12 +17,22 @@ public:
 
 	void AddActorLocation(FIntPoint _Pos);
 
-	FIntPoint GetPos();
+	FIntPoint GetActorLocation()
+	{
+		return Pos;
+	}
+
+	class Renderer* CreateDefaultSubObject();
+
 
 protected:
-	ConsoleImage RenderImage;
+	// ConsoleImage RenderImage;
+	// 값형으로 만들수 없다.
+	// 그려져야 하면 랜더러를 만들고
+	// 안그려져야하면 안만들면 된다.
 
 private:
+	class Renderer* ImageRenderer = nullptr;
 	FIntPoint Pos;
 	// 동적할당 할거냐 말거냐?
 };

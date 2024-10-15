@@ -37,6 +37,8 @@ public:
 		return NewActor;
 	}
 
+
+
 	//AActor* SpawnBullet()
 	//{
 	//	Bullet* NewActor = new Bullet();

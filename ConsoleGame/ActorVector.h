@@ -38,7 +38,7 @@ public:
     }
 
 private:
-	DataType* Values;
+	DataType* Values = nullptr;
 	int DataSize = 0;
 };
 
