@@ -31,6 +31,7 @@ public:
 
 	void SetScreenSize(int _X, int _Y);
 
+
 	void WindowSetPixel(FIntPoint _Value, char _Text = '*')
 	{
 		WindowSetPixel(_Value.X, _Value.Y, _Text);

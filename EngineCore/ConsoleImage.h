@@ -2,20 +2,7 @@
 #include <BaseSystem/EngineMath.h>
 #include <vector>
 
-// 선생님에게 이미지란 
-// 색깔의 2차원 배열이다.
 
-//class Color
-//{
-//	unsigned char r;
-//	unsigned char g;
-//	unsigned char b;
-//	unsigned char a;
-//};
-
-
-// 이미지 => Image
-// 그린다 => Renderer 이외 여러 클래스들이 나누어 갖는다.
 class ConsoleImage
 {
 
@@ -57,6 +44,7 @@ public:
 		return Pixels[_Y][_X];
 	}
 
+
 	inline FIntPoint GetImageSize() const
 	{
 		return ImageSize;
@@ -65,6 +53,7 @@ public:
 	void Copy(FIntPoint _Offset, ConsoleImage& _Image);
 
 	void SetPixel(FIntPoint _Pos, char _Char);
+
 
 private:
 	// 상수 안됩니다.

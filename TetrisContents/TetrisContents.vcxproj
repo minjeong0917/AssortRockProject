@@ -25,10 +25,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h" />
+    <ClInclude Include="BlockStackImage.h" />
     <ClInclude Include="TetrisInit.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="BlockStackImage.cpp" />
     <ClCompile Include="TetrisInit.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

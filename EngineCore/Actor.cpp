@@ -41,3 +41,4 @@ void AActor::AddActorLocation(FIntPoint _Dir)
 {
 	Pos += _Dir;
 }
+
