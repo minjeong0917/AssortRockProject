@@ -7,6 +7,7 @@ public:
 	void BeginPlay() override;
 	void Tick() override;
 	void Stack();
+	void LineFullStack();
 
 
 };

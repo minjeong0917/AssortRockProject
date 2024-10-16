@@ -5,6 +5,8 @@
 #include "BlockStackImage.h"
 
 
+
+
 void Block::BeginPlay()
 {
 	Super::BeginPlay();
@@ -59,10 +61,8 @@ void Block::Tick()
 void Block::Stack()
 {
 	BlockStackImage* NewBlockStcakImg = BlockStackImage::GetBlockStackImg();
-
 	ConsoleImage Size = NewBlockStcakImg->Render->RenderImage;
 	int MaxY = Size.GetImageSize().Y - 1;
-
 
 	bool IsBlock = false;
 
@@ -75,6 +75,19 @@ void Block::Stack()
 	{
 		NewBlockStcakImg->BlockSetPixel(GetActorLocation());
 		SetActorLocation({ 0, 0 });
+
+		bool ff = false;
+		NewBlockStcakImg->IsLineFullCheck();
+
 	}
+
 }
+
+void Block::LineFullStack()
+{
+	BlockStackImage* NewBlockStcakImg = BlockStackImage::GetBlockStackImg();
+
+
+}
+
 
