@@ -20,10 +20,7 @@ public:
 		{
 			delete[] Datas;
 			Datas = nullptr;
-			return;
 		}
-
-		delete[] Datas;
 	}
 
 	void reserve(size_t _capacity)
