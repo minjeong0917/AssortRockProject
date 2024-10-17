@@ -82,12 +82,3 @@ void Block::Stack()
 	}
 
 }
-
-void Block::LineFullStack()
-{
-	BlockStackImage* NewBlockStcakImg = BlockStackImage::GetBlockStackImg();
-
-
-}
-
-
