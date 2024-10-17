@@ -24,13 +24,17 @@ public:
 
 	void ScreenRender();
 
+	FIntPoint GetScreenSize()
+	{
+		return BackBuffer.GetImageSize();
+	}
+
 	void SetScreenSize(FIntPoint _Value)
 	{
 		SetScreenSize(_Value.X, _Value.Y);
 	}
 
 	void SetScreenSize(int _X, int _Y);
-
 
 	void WindowSetPixel(FIntPoint _Value, char _Text = '*')
 	{

@@ -41,7 +41,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TetrisContents", "TetrisCon
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{C205EE8F-D5DA-4AD1-B237-A8DCBA02A380}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Game", "Game", "{C3D46C8F-CF06-435F-97F8-772AC559B4E2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tetris", "Tetris", "{C3D46C8F-CF06-435F-97F8-772AC559B4E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

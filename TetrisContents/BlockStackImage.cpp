@@ -1,5 +1,8 @@
 #include "BlockStackImage.h"
 #include <EngineCore/Renderer.h>
+#include <EngineCore/ConsoleEngine.h>
+#include <EngineCore/ConsoleWindow.h>
+
 #include <vector>
 
 BlockStackImage* BlockStackImage::BlockStackImg = nullptr;
@@ -11,7 +14,10 @@ void BlockStackImage::BeginPlay()
 
 	Render = CreateDefaultSubObject();
 
-	Render->RenderImage.Create({ 5, 10 }, '.');
+	UConsoleWindow* Window = ConsoleEngine::GetEngine().GetWindow();
+	FIntPoint Screen = Window->GetScreenSize();
+
+	Render->RenderImage.Create(Screen, '.');
 }
 
 void BlockStackImage::BlockSetPixel(FIntPoint _Pos)
@@ -59,8 +65,8 @@ void BlockStackImage::IsLineFullCheck()
 			for (int x = 0; x < WindowXSize; x++)
 			{
 				Render->RenderImage.SetPixel({ x, y }, '.');
-				BlockStackImage::DownBlock();
 			}
+			BlockStackImage::DownBlock();
 		}
 	}
 }
