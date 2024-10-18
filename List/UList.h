@@ -84,6 +84,18 @@ public:
     ~UList()
     {
         DeleteNew();
+
+        if (nullptr != StartNode)
+        {
+            delete StartNode;
+            StartNode = nullptr;
+        }
+
+        if (nullptr != EndNode)
+        {
+            delete EndNode;
+            EndNode = nullptr;
+        }
     }
 
     // 자료구조 3대장
@@ -163,20 +175,38 @@ public:
     }
 
 
-    void DeleteNew()
+    iterator DeleteNew()
     {
-        UListNode* CurNode = StartNode;
-
-        while (CurNode != nullptr)
+        UListNode* CurNode = StartNode->Next;
+        if (CurNode == nullptr)
         {
-            UListNode* ReturnNode = CurNode->Next;
-
-            delete CurNode;
-            CurNode = nullptr;
-
-            CurNode = ReturnNode;
+            assert(false);
+            return iterator();
         }
 
+        if (CurNode == StartNode)
+        {
+            assert(false);
+            return iterator();
+        }
+
+        // C++
+        if (CurNode == EndNode)
+        {
+            assert(false);
+            return iterator();
+        }
+
+        while (CurNode != EndNode)
+        {
+            UListNode* ReturnNode = CurNode->Next;
+            if (nullptr != CurNode)
+            {
+                delete CurNode;
+                CurNode = nullptr;
+            }
+            CurNode = ReturnNode;
+        }
     }
 
 private:
