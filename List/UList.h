@@ -163,55 +163,20 @@ public:
     }
 
 
-    iterator DeleteNew()
+    void DeleteNew()
     {
-        UListNode* CurNode = StartNode->Next;
-        if (CurNode == nullptr)
-        {
-            assert(false);
-            return iterator();
-        }
+        UListNode* CurNode = StartNode;
 
-        if (CurNode == StartNode)
-        {
-            assert(false);
-            return iterator();
-        }
-
-        // C++
-        if (CurNode == EndNode)
-        {
-            assert(false);
-            return iterator();
-        }
-
-        while (CurNode != EndNode)
+        while (CurNode != nullptr)
         {
             UListNode* ReturnNode = CurNode->Next;
-            if (nullptr != CurNode)
-            {
 
-                CurNode->Prev->Next = CurNode->Next;
-                CurNode->Next->Prev = CurNode->Prev;
+            delete CurNode;
+            CurNode = nullptr;
 
-                delete CurNode;
-                CurNode = nullptr;
-
-            }
             CurNode = ReturnNode;
         }
 
-        if (nullptr != StartNode)
-        {
-            delete StartNode;
-            StartNode = nullptr;
-        }
-
-        if (nullptr != EndNode)
-        {
-            delete EndNode;
-            EndNode = nullptr;
-        }
     }
 
 private:
